@@ -1,10 +1,10 @@
-// Find out if this is iOS 7 or greater
-function isIOS7Plus() {
+// Find out if this is iOS # or greater
+function isIOSVersionPlus(versionNumber) {
     if (Titanium.Platform.name == 'iPhone OS') {
         var version = Titanium.Platform.version.split(".");
         var major = parseInt(version[0],10);
         // can only test this support on a 3.2+ device
-        if (major >= 7) {
+        if (major >= versionNumber) {
             return true;
         }
     }
@@ -12,7 +12,8 @@ function isIOS7Plus() {
 
 }
 
-exports.IOS7 = isIOS7Plus();
+exports.IOS7 = isIOSVersionPlus(7);
+exports.IOS8 = isIOSVersionPlus(8);
 exports.top = exports.IOS7 ? 20 : 0;
 exports.android = Ti.Platform.osname == 'android';
 exports.iOS = Ti.Platform.osname == 'ipad' || Ti.Platform.osname == 'iphone';
