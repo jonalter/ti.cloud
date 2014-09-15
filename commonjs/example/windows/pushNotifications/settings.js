@@ -1,6 +1,8 @@
 var WindowManager = require('helper/WindowManager');
 var Utils = require('helper/Utils');
 var Cloud = require('ti.cloud');
+var PushManager = require('windows/pushNotifications/pushManager');
+
 exports['Settings for This Device'] = function (evt) {
     var win = WindowManager.createWindow({
         backgroundColor: 'white'
@@ -18,12 +20,16 @@ exports['Settings for This Device'] = function (evt) {
     });
     enablePush.addEventListener('click', function () {
         if (!Utils.pushNotificationsEnabled) {
-            enablePushNotifications();
+            PushManager.enablePushNotifications();
         } else {
-            disablePushNotifications();
+            PushManager.disablePushNotifications();
         }
-        enablePush.title = Utils.pushNotificationsEnabled ? 'Enabled' : 'Disabled';
     });
+    function setEnableButtonTitle() {
+        enablePush.title = Utils.pushNotificationsEnabled ? 'Enabled' : 'Disabled';
+    }
+    PushManager.setOnPushEnabled(setEnableButtonTitle);
+    PushManager.setOnPushDisabled(setEnableButtonTitle);
     content.add(enablePush);
 
     if (Ti.Platform.name === 'iPhone OS') {

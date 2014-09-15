@@ -1,6 +1,7 @@
 # Change Log
 <pre>
 v3.2.4  Fix bug in ACLs example [TIMODOPEN-423]
+        Updated PushNotifications example for iOS8 [TIMODOPEN-432]
 
 v3.2.3  Updating Analytics payload [NATIVESDK-136, NATIVESDK-195]
         Added Generic Send Request (Cloud.sendRequest) [TIMODOPEN-389]
