@@ -97,7 +97,7 @@ function checkPushNotifications() {
         if (androidPushModule === null) {
             androidPushModule = getAndroidPushModule();
             if (androidPushModule === null) {
-                return;
+                return win;
             }
         }
         if (Utils.pushNotificationsEnabled) {

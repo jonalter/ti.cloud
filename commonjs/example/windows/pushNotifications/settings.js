@@ -2,7 +2,8 @@ var WindowManager = require('helper/WindowManager');
 var Utils = require('helper/Utils');
 var Cloud = require('ti.cloud');
 var PushManager = require('windows/pushNotifications/pushManager');
-
+var androidPushModule = null;
+var onPushDisabled = null;
 exports['Settings for This Device'] = function (evt) {
     var win = WindowManager.createWindow({
         backgroundColor: 'white'
@@ -25,6 +26,18 @@ exports['Settings for This Device'] = function (evt) {
             PushManager.disablePushNotifications();
         }
     });
+    function getAndroidPushModule() {
+        try {
+            return require('ti.cloudpush')
+        }
+        catch (err) {
+            alert('Unable to require the ti.cloudpush module for Android!');
+            Utils.pushNotificationsEnabled = false;
+            Ti.App.Properties.setBool('PushNotifications-Enabled', false);
+            onPushDisabled && onPushDisabled();
+            return null;
+        }
+    }
     function setEnableButtonTitle() {
         enablePush.title = Utils.pushNotificationsEnabled ? 'Enabled' : 'Disabled';
     }
@@ -42,7 +55,7 @@ exports['Settings for This Device'] = function (evt) {
         if (androidPushModule === null) {
             androidPushModule = getAndroidPushModule();
             if (androidPushModule === null) {
-                return;
+                return win;
             }
         }
         /*
