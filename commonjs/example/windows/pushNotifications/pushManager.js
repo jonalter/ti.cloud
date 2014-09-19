@@ -136,3 +136,4 @@ exports.enablePushNotifications = enablePushNotifications;
 exports.setOnPushEnabled = setOnPushEnabled;
 exports.setOnPushDisabled = setOnPushDisabled;
 exports.checkPushNotifications = checkPushNotifications;
+exports.getAndroidPushModule = getAndroidPushModule;

@@ -2,7 +2,7 @@ var WindowManager = require('helper/WindowManager');
 var Utils = require('helper/Utils');
 var Cloud = require('ti.cloud');
 var PushManager = require('windows/pushNotifications/pushManager');
-
+var androidPushModule = null;
 exports['Settings for This Device'] = function (evt) {
     var win = WindowManager.createWindow({
         backgroundColor: 'white'
@@ -40,9 +40,9 @@ exports['Settings for This Device'] = function (evt) {
     }
     else if (Ti.Platform.name === 'android') {
         if (androidPushModule === null) {
-            androidPushModule = getAndroidPushModule();
+            androidPushModule = PushManager.getAndroidPushModule();
             if (androidPushModule === null) {
-                return;
+                return win;
             }
         }
         /*
