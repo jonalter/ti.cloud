@@ -97,7 +97,7 @@ function checkPushNotifications() {
         if (androidPushModule === null) {
             androidPushModule = getAndroidPushModule();
             if (androidPushModule === null) {
-                return win;
+                return;
             }
         }
         if (Utils.pushNotificationsEnabled) {
@@ -136,3 +136,4 @@ exports.enablePushNotifications = enablePushNotifications;
 exports.setOnPushEnabled = setOnPushEnabled;
 exports.setOnPushDisabled = setOnPushDisabled;
 exports.checkPushNotifications = checkPushNotifications;
+exports.getAndroidPushModule = getAndroidPushModule;
