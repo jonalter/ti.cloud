@@ -1,6 +1,10 @@
 # Change Log
 <pre>
+v3.2.6  Re-Added Generic Send Request (Cloud.sendRequest) [TIMODOPEN-449]
+        searchFacebookFriends now accepts data param
+
 v3.2.5  Fix bug in android push notification example [TIMODOPEN-435]
+
 v3.2.4  Fix bug in ACLs example [TIMODOPEN-423]
         Updated PushNotifications example for iOS8 [TIMODOPEN-432]
 
