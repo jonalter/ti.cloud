@@ -100,7 +100,12 @@ function checkPushNotifications() {
                 return;
             }
         }
-        if (Utils.pushNotificationsEnabled) {
+        // If Google Play Services is not available then we should not continue
+        var code = androidPushModule.isGooglePlayServicesAvailable();
+        if (code != androidPushModule.SUCCESS) {
+            alert ("Google Play Services is not installed/updated/available");
+        }
+        if (Utils.pushNotificationsEnabled && code == androidPushModule.SUCCESS) {
             // Need to retrieve the device token before enabling push
             androidPushModule.retrieveDeviceToken({
                 success: deviceTokenSuccess,
