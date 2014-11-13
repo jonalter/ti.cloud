@@ -1,5 +1,7 @@
 # Change Log
 <pre>
+v3.2.7  Updating example to use the isGooglePlayServicesAvailable method [TIMODOPEN-458]
+
 v3.2.6  Re-Added Generic Send Request (Cloud.sendRequest) [TIMODOPEN-449]
         searchFacebookFriends now accepts data param
 
