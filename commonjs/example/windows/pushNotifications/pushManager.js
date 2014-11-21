@@ -6,6 +6,14 @@ function receivePush(e) {
     alert('Received push: ' + JSON.stringify(e));
 }
 
+function trayClickFocusedApp(e) {
+    Ti.API.info('TrayClickFocusedApp: ' + e.payload);
+}
+
+function trayClickLaunchedApp(e) {
+    Ti.API.info('TrayClickLaunchedApp: ' + e.payload);
+}
+
 function enablePushNotifications() {
     Utils.pushNotificationsEnabled = true;
     Ti.App.Properties.setBool('PushNotifications-Enabled', true);
@@ -115,6 +123,8 @@ function checkPushNotifications() {
         else {
             androidPushModule.enabled = false;
             androidPushModule.removeEventListener('callback', receivePush);
+            androidPushModule.removeEventListener('trayClickFocusedApp', trayClickFocusedApp);
+            androidPushModule.removeEventListener('trayClickLaunchedApp', trayClickLaunchedApp);
             Utils.pushDeviceToken = null;
         }
     }
@@ -128,6 +138,8 @@ function deviceTokenSuccess(e) {
     if (androidPushModule) {
         androidPushModule.enabled = true;
         androidPushModule.addEventListener('callback', receivePush);
+        androidPushModule.addEventListener('trayClickFocusedApp', trayClickFocusedApp);
+        androidPushModule.addEventListener('trayClickLaunchedApp', trayClickLaunchedApp);
     }
 }
 
